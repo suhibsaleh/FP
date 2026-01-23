@@ -9,6 +9,10 @@
   (def strls (clstr/split str1 #" "))
   (println strls)
   (println (clstr/join " " strls))
+  (println (str "prefix " str1))
+  (println (str "prefix " 1))
+  (println (str "prefix " true))
+  (println (str "prefix " nil))
   (println)
   )
 
@@ -31,6 +35,7 @@
   (println (contains? allSet 'a'))
   (println (conj allSet 'c'))
   (println (disj allSet 'a'))
+  (println #{3 2 'a'})
   (println)
   )
 
@@ -52,6 +57,13 @@
   (println (contains? allMaps "name"))
   (println (keys allMaps))
   (println (vals allMaps))
+  (def nestedMap {:key1 {:key2 "value"}})
+  (println nestedMap)
+  (println (get nestedMap :key1))
+  (println (get-in nestedMap [:key1]))
+  (println (get-in nestedMap [:key1 :key2]))
+
+
   (println)
   )
 
@@ -106,19 +118,76 @@
     (println "yes"); will print "yes"
     (println "no")
     )
+  )
 
+(defn definings[]
+
+;  error-message = "OH GOD! IT'S A DISASTER! WE'RE MILDLY INCONVENIENCED!"
+;  this pattern is discouraged in Clojure
+  (def severity :mild)
+  (def error-message "OH GOD! IT'S A DISASTER! WE'RE ")
+  (if (= severity :mild)
+    (def error-message (str error-message "MILDLY INCONVENIENCED!"))
+    (def error-message (str error-message "DOOOOOOOMED!")))
+  (println error-message)
+
+;  the right way to do it
+  (def err-message
+    (str "OH GOD! IT'S A DISASTER! WE'RE "
+      (if (= severity :mild)
+        "MILDLY INCONVENIENCED!"
+        "DOOOOOOOMED!")))
+  (println error-message)
 
 
   )
 
+(defn multi-arity
+  ([first-arg second-arg third-arg] (println first-arg second-arg third-arg))
+  ([first-arg second-arg] (println first-arg second-arg))
+  ([first-arg] (println first-arg))
+  )
+
+(defn rest-parameter
+  [& all]
+  all
+  )
+
+(defn destructuring
+  [[a b & etc]]
+  (println (str a b etc))
+  )
+
+(defn power[element]
+  (* element element))
+
+(defn as-test
+  [{:keys [id name] :as student}]
+  (println student)
+  (println id)
+  (println name)
+  )
+
+(defn fn-return [num]
+  (fn [x]
+    (* num x )))
+
+(defn s-fn-return [num]
+  #(* num %))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (strings)
-  (lists)
-  (sets)
-  (vectors)
-  (maps)
-  (ifExpressions)
+;  (strings)
+;  (lists)
+;  (sets)
+;  (vectors)
+;  (maps)
+;  (ifExpressions)
+;  (definings)
+;  (as-test {:id 1 :name "suhib"})
+
+  (def funcy (s-fn-return 3))
+  (funcy 3)
 
   )
