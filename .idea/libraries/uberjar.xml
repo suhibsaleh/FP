@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="uberjar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/first/target/uberjar/first-0.1.0-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/first/target/uberjar/first-0.1.0-SNAPSHOT-standalone.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
