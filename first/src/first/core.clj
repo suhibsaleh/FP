@@ -175,6 +175,16 @@
 (defn s-fn-return [num]
   #(* num %))
 
+(defn looping []
+  (loop [index 0]
+    (println index)
+    (if (> index 4)
+      ()
+      (recur (inc index))
+      )
+    )
+  )
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
@@ -186,8 +196,6 @@
 ;  (ifExpressions)
 ;  (definings)
 ;  (as-test {:id 1 :name "suhib"})
-
-  (def funcy (s-fn-return 3))
-  (funcy 3)
+  (looping)
 
   )
