@@ -21,7 +21,6 @@
   )
 
 (defn my-reg-reg[]
-
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;  #"hello"           ; Matches "hello"             ;
   ;  #"\d+"            ; Matches one or more digits   ;
@@ -33,9 +32,26 @@
   (println (re-matches #"this is very important string" str-to-match)); works fine (will print the full string)
   )
 
+(defn sum-to-x [x]
+  (loop [total 0, current x]
+    (if (< current 1)
+        total
+      (recur (+ total current) (dec current))
+      )
+    )
+  )
+
+(defn mapset [ls]
+  (loop [total #{}, current-ls ls]
+    (if (empty? current-ls)
+      total
+      (recur (into total (first current-ls)) (rest current-ls))
+      )
+    )
+  )
 
 (defn -main
   [& args]
 
-  (my-reg-reg)
+  (println (mapset [1 2 3 3 2 1 2 3 4]))
   )
